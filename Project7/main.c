@@ -1,6 +1,9 @@
 #include<stdio.h>
 #include<math.h>
+#include<stdlib.h>
+#include<time.h>
 #define MAXN 110
+// #define RAND_MAX 32767
 struct InputLayer{
     int siz;
     double output[MAXN];
@@ -21,12 +24,12 @@ double input[MAXN], output[MAXN];
 void init(){
     for(int i = 1; i <= hiddenLayer.siz; ++i){
         for(int j = 0; j <= inputLayer.siz; ++j){
-            hiddenLayer.w[i][j] = 1;
+            hiddenLayer.w[i][j] = (double)rand() / RAND_MAX;
         }
     }
     for(int i = 1; i <= outputLayer.siz; ++i){
         for(int j = 0; j <= hiddenLayer.siz; ++j){
-            outputLayer.w[i][j] = 1;
+            outputLayer.w[i][j] = (double)rand() / RAND_MAX;
         }
     }
     return;
@@ -82,6 +85,7 @@ void update(){
     return;
 }
 int main(){
+    srand(time(NULL));
     int op;
     printf("1: new 2: read 3: train 4: predict 5: output 0: exit\n");
     while(scanf("%d", &op) != EOF){
