@@ -19,7 +19,7 @@ struct OutputLayer{
     double output[MAXN];
 }outputLayer;
 double g[MAXN], e[MAXN];
-double eta = 0.99;
+double eta = 0.01;
 double input[MAXN], output[MAXN];
 void init(){
     for(int i = 1; i <= hiddenLayer.siz; ++i){
