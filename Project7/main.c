@@ -2,7 +2,7 @@
 #include<math.h>
 #include<stdlib.h>
 #include<time.h>
-#define MAXN 110
+#define MAXN 210
 // #define RAND_MAX 32767
 struct InputLayer{
     int siz;
@@ -125,7 +125,7 @@ int main(){
                 printf("Please input the file name.\n");
                 char fileName[100];
                 scanf("%s", fileName);
-                while(T--){
+                for(int k = 1; k <= T; ++k){
                     freopen(fileName, "r", stdin);
                     int t;
                     scanf("%d", &t);
@@ -136,8 +136,9 @@ int main(){
                         update();
                     }
                     freopen("CON", "r", stdin);
+                    if(k % (T / 10) == 0) printf("%d%% ", k / (T / 10) * 10);
                 }
-                
+                printf("\n");
             }
             else{
                 int t;
