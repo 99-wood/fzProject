@@ -19,16 +19,18 @@ struct OutputLayer{
     double output[MAXN];
 }outputLayer;
 double g[MAXN], e[MAXN];
-double eta = 0.01;
+double eta = 0.99;
 double input[MAXN], output[MAXN];
 void init(){
     for(int i = 1; i <= hiddenLayer.siz; ++i){
-        for(int j = 0; j <= inputLayer.siz; ++j){
+        hiddenLayer.w[i][0] = (double)rand() / RAND_MAX * inputLayer.siz;
+        for(int j = 1; j <= inputLayer.siz; ++j){
             hiddenLayer.w[i][j] = (double)rand() / RAND_MAX;
         }
     }
     for(int i = 1; i <= outputLayer.siz; ++i){
-        for(int j = 0; j <= hiddenLayer.siz; ++j){
+    	outputLayer.w[i][0] = (double)rand() / RAND_MAX * hiddenLayer.siz;
+        for(int j = 1; j <= hiddenLayer.siz; ++j){
             outputLayer.w[i][j] = (double)rand() / RAND_MAX;
         }
     }
