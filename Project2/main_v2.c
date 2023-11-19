@@ -3,6 +3,7 @@
 #define INF 0x3f3f3f3f
 int num[MAXN][MAXN], core[MAXN][MAXN], ans[MAXN][MAXN];
 int numH, numW, coreH, coreW, H, W; //数据矩阵大小，卷积核大小，池化核大小
+int cnt1, cnt2;
 void input(){
 	scanf("%d%d%d%d%d%d", &numH, &numW, &coreH, &coreW, &H, &W);
 	for(int i = 1; i <= coreH; ++i){
@@ -32,21 +33,25 @@ void solve(){
 			ans[i][j] = calculate(i, j);
 		}
 	}
-    int cnt1 = 1, cnt2 = 1;
+    cnt1 = 1, cnt2 = 1;
 	for(int sx = 1; sx <= numH - coreH + 1; sx += H){
         cnt2 = 1;
 		for(int sy = 1; sy <= numW - coreW + 1; sy += W){
             int maxx = -INF;
-			for(int x = sx; x <= numH - coreH + 1; x++){
-                for(int y = sy; y <= numW - coreW)
+			for(int x = sx; x <= numH - coreH + 1 && x < sx + H; ++x){
+                for(int y = sy; y <= numW - coreW + 1 && y < sy + W; ++y){
+                	if(ans[x][y] > maxx) maxx = ans[x][y];
+				}
             }
+            ans[cnt1][cnt2++] = maxx;
 		}
+		cnt1++;
 	}
 	return;
 }
 void print(){
-	for(int i = 1; i <= numH - coreH - H + 2; ++i){
-		for(int j = 1; j <= numW - coreW - W + 2; ++j){
+	for(int i = 1; i < cnt1; ++i){
+		for(int j = 1; j < cnt2; ++j){
 			printf("%d ", ans[i][j]);
 		}
 		printf("\n");
