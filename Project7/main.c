@@ -22,18 +22,18 @@ double g[MAXN], e[MAXN];
 double eta = 0.01;
 double input[MAXN], output[MAXN];
 void init(){
-    for(int i = 1; i <= hiddenLayer.siz; ++i){
-        hiddenLayer.w[i][0] = (double)rand() / RAND_MAX * inputLayer.siz;
-        for(int j = 1; j <= inputLayer.siz; ++j){
-            hiddenLayer.w[i][j] = (double)rand() / RAND_MAX;
-        }
-    }
-    for(int i = 1; i <= outputLayer.siz; ++i){
-    	outputLayer.w[i][0] = (double)rand() / RAND_MAX * hiddenLayer.siz;
-        for(int j = 1; j <= hiddenLayer.siz; ++j){
-            outputLayer.w[i][j] = (double)rand() / RAND_MAX;
-        }
-    }
+    // for(int i = 1; i <= hiddenLayer.siz; ++i){
+    //     hiddenLayer.w[i][0] = (double)rand() / RAND_MAX * inputLayer.siz;
+    //     for(int j = 1; j <= inputLayer.siz; ++j){
+    //         hiddenLayer.w[i][j] = (double)rand() / RAND_MAX;
+    //     }
+    // }
+    // for(int i = 1; i <= outputLayer.siz; ++i){
+    // 	outputLayer.w[i][0] = (double)rand() / RAND_MAX * hiddenLayer.siz;
+    //     for(int j = 1; j <= hiddenLayer.siz; ++j){
+    //         outputLayer.w[i][j] = (double)rand() / RAND_MAX;
+    //     }
+    // }
     return;
 }
 double f(double x){
@@ -136,7 +136,7 @@ int main(){
                         update();
                     }
                     freopen("CON", "r", stdin);
-                    if(k % (T / 10) == 0) printf("%d%% ", k / (T / 10) * 10);
+                    if((T / 10) && k % (T / 10) == 0) printf("%d%% ", k / (T / 10) * 10);
                 }
                 printf("\n");
             }
@@ -152,18 +152,27 @@ int main(){
             }
         }
         else if(op == 4){ //预测
-         printf("If you want to start with file? (1, 0)\n");
+            printf("If you want to start with file? (1, 0)\n");
             int tmp;
             scanf("%d", &tmp);
             if(tmp){
-                printf("Please input the file name.\n");
-                char fileName[100];
-                scanf("%s", fileName);
-                freopen(fileName, "r", stdin);
-                for(int i = 1; i <= inputLayer.siz; ++i) scanf("%lf", &input[i]);
-                run();
-                for(int i = 1; i <= outputLayer.siz; ++i) printf("%lf ", outputLayer.output[i]);
+                printf("Please input the input-file name.\n");
+                char fileName1[100];
+                scanf("%s", fileName1);
+                printf("Please input the output-file name.\n");
+                char fileName2[100];
+                scanf("%s", fileName2);
+                freopen(fileName1, "r", stdin);
+                freopen(fileName2, "w", stdout);
+                int T;
+                scanf("%d", &T);
+                while(T--){
+                    for(int i = 1; i <= inputLayer.siz; ++i) scanf("%lf", &input[i]);
+                    run();
+                    for(int i = 1; i <= outputLayer.siz; ++i) printf("%lf\n", outputLayer.output[i]);
+                }
                 freopen("CON", "r", stdin);
+                freopen("CON", "w", stdout);
             }
             else{
                 for(int i = 1; i <= inputLayer.siz; ++i) scanf("%lf", &input[i]);
