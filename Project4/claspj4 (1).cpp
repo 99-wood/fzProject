@@ -1,4 +1,4 @@
-﻿// #define _CRT_SECURE_NO_WARNING
+﻿#define _CRT_SECURE_NO_WARNING
 #include <stdio.h>
 #include <math.h>
 #include<conio.h>
