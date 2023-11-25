@@ -22,18 +22,18 @@ double g[MAXN], e[MAXN];
 double eta = 0.1;
 double input[MAXN], output[MAXN];
 void init(){
-    // for(int i = 1; i <= hiddenLayer.siz; ++i){
-    //     hiddenLayer.w[i][0] = (double)rand() / RAND_MAX * inputLayer.siz;
-    //     for(int j = 1; j <= inputLayer.siz; ++j){
-    //         hiddenLayer.w[i][j] = (double)rand() / RAND_MAX;
-    //     }
-    // }
-    // for(int i = 1; i <= outputLayer.siz; ++i){
-    // 	outputLayer.w[i][0] = (double)rand() / RAND_MAX * hiddenLayer.siz;
-    //     for(int j = 1; j <= hiddenLayer.siz; ++j){
-    //         outputLayer.w[i][j] = (double)rand() / RAND_MAX;
-    //     }
-    // }
+     for(int i = 1; i <= hiddenLayer.siz; ++i){
+         hiddenLayer.w[i][0] = (double)rand() / RAND_MAX * inputLayer.siz;
+         for(int j = 1; j <= inputLayer.siz; ++j){
+             hiddenLayer.w[i][j] = (double)rand() / RAND_MAX;
+         }
+     }
+     for(int i = 1; i <= outputLayer.siz; ++i){
+     	outputLayer.w[i][0] = (double)rand() / RAND_MAX * hiddenLayer.siz;
+         for(int j = 1; j <= hiddenLayer.siz; ++j){
+             outputLayer.w[i][j] = (double)rand() / RAND_MAX;
+         }
+     }
     return;
 }
 double f(double x){

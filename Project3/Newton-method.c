@@ -8,7 +8,7 @@ double mysqrt(double x){
     double last = -1;
     while(fabs(ans - last) > ACC){
         last = ans;
-        ans = ans - (ans * ans - x) / (2 * ans);
+        ans = ans - (ans * ans - x) / (2 * ans); //迭代法求出新值
     }
     return ans;
 }
